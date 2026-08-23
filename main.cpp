@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Arvore.h"
 #include "Busca.h"
+#include "Propriedades.h"
 
 using namespace std;
 
@@ -12,6 +13,7 @@ void exibirMenu() {
     cout << "4. Exibir em ordem\n";
     cout << "5. Exibir pre-ordem\n";
     cout << "6. Exibir pos-ordem\n";
+    cout << "7. Analisar propriedades (altura, tipo, etc)\n";
     cout << "0. Sair\n";
     cout << "Escolha: ";
 }
@@ -71,6 +73,21 @@ int main() {
                 cout << "Pos-ordem: ";
                 posOrdem(raiz);
                 cout << "\n";
+                break;
+                
+            case 7:
+                if (estaVazia(raiz)) {
+                    cout << ">>> A arvore esta vazia!\n";
+                } else {
+                    cout << "\n=== PROPRIEDADES DA ARVORE ===\n";
+                    cout << "- Total de nos: " << totalNos(raiz) << "\n";
+                    cout << "- Altura: " << altura(raiz) << "\n";
+                    cout << "- Estritamente Binaria? " << (ehEstritamenteBinaria(raiz) ? "Sim" : "Nao") << "\n";
+                    cout << "- Arvore Cheia? " << (ehCheia(raiz) ? "Sim" : "Nao") << "\n";
+                    cout << "- Arvore Quase Completa? " << (ehQuaseCompleta(raiz) ? "Sim" : "Nao") << "\n";
+                    cout << "- Arvore Degenerada? " << (ehDegenerada(raiz) ? "Sim" : "Nao") << "\n";
+                    cout << "==============================\n";
+                }
                 break;
                 
             case 0:
