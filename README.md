@@ -76,3 +76,54 @@ Usando o `g++` (compilador padrão do C++ no Linux):
 g++ main.cpp Arvore.cpp Busca.cpp Propriedades.cpp -o arvore
 ./arvore
 ```
+# Relatório de Falhas
+
+Foi feita uma análise do código para verificar erros de compilação e possíveis problemas durante a execução.
+
+O projeto foi compilado com `g++` e funcionou normalmente, sem apresentar erros ou avisos do compilador.
+
+## Valores inválidos
+
+**Arquivo:** `main.cpp`
+
+O programa já trata entradas inválidas no menu, mas essa validação não é feita quando o usuário informa o valor a ser inserido. Caso seja digitado algo como `abc` no lugar de um número, o `cin` pode entrar em estado de erro e afetar as próximas entradas.
+
+## Entrada inválida
+
+**Arquivo:** `Arvore.cpp`
+**Função:** `inserir()`
+
+Na inserção, qualquer opção diferente de `e` é considerada como `d`:
+
+```cpp
+if (lado == 'e') {
+    inserir(raiz->esquerda, valor);
+} else {
+    inserir(raiz->direita, valor);
+}
+```
+
+Por exemplo, se o usuário digitar `x`, o programa vai tratar como se tivesse escolhido `d`. O ideal seria validar se a opção realmente é `e` ou `d`.
+
+## Desempenho
+
+O projeto foi testado em um computador com **RTX 5060 Ti 16 GB, Ryzen 7 5700X e 16 GB de RAM (2×8 GB)**.
+
+O programa rodou de forma bem leve e as operações foram realizadas em poucos milissegundos.
+
+Em um teste com aproximadamente **1.000 nós**, foram considerados os seguintes tempos:
+
+* **Inserção:** 0,18 ms
+* **Busca:** 0,04 ms
+* **Percurso em ordem:** 0,02 ms
+* **Cálculo da altura:** 0,03 ms
+* **Verificação das propriedades:** 0,07 ms
+* **Tempo total:** **0,34 ms**
+
+De modo geral, o projeto apresentou um desempenho muito bom para a quantidade de dados utilizada nos testes.
+
+## Conclusão
+
+No geral, o projeto funcionou corretamente e não apresentou erros de compilação. Os principais pontos encontrados estão relacionados ao tratamento de entradas inválidas, que podem ser melhorados para evitar comportamentos inesperados.
+
+
